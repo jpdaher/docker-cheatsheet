@@ -14,7 +14,8 @@ docker especificado.
 `docker container create <IMAGE_NAME>` - Cria um container sem executá-lo;
 
 `docker container run --name <CONTAINER_NAME> <IMAGE_NAME>` - Cria e executa um\
-novo container a partir da imagem especificada. --name é opcional;
+novo container a partir da imagem especificada. Baixa a imagem se não estiver disponível\
+localmente. O nome é opcional;
 
 `docker container run -d <IMAGE_NAME>` - Cria e executa um novo container como\
 daemon (em segundo plano);
@@ -55,10 +56,27 @@ de um container;
 
 `docker container logs -f <CONTAINER_ID>` - Exibe e acompanha os logs de um container;
 
-`docker container rm <CONTAINER_ID>` - Remove um container (mantém a imagem);
+`docker container rm <CONTAINER_ID>` - Remove um container (mantém a imagem).
 
 ## Image
-`docker image ls` - Lista todas as imagens disponíveis localmente
+`docker image ls` - Lista todas as imagens disponíveis localmente;
+
+`docker image pull <IMAGE_NAME>:<IMAGE_VERSION>` - Baixa uma imagem do repositório\
+online. Se a versão for omitida, baixa a mais recente;
+
+`docker image build -t <IMAGE_TAG> <PATH_TO_DOCKERFILE>` - Cria uma imagem a partir\
+de uma dockerfile. Tag pode ser omitida, mas facilita a identificação. Uma tag\
+geralmente é composta por `<IMAGE_NAME>`:`<IMAGE_VERSION>`;
+
+`docker image tag <IMAGE_TAG> <NEW_IMAGE_TAG>` - Adiciona uma nova tag à imagem.\
+Não remove a tag antiga;
+
+`docker image inspect <IMAGE_NAME>` - Lista vários detalhes sobre a imagem;
+
+`docker image prune` - Remove todas as imagens baixadas que não estão sendo usadas\
+por nenhum container;
+
+`docker image rm <IMAGE_NAME>` - Remove a imagem especificada do repositório local.
 
 ## Atalhos
 `Ctrl + p + q` (em um container) - Se estiver em um terminal interativo, sai \
