@@ -20,6 +20,9 @@ localmente. O nome é opcional;
 `docker container run -d <IMAGE_NAME>` - Cria e executa um novo container como\
 daemon (em segundo plano);
 
+`docker container run -e <NOME_DA_VARIAVEL>=<VALOR_DA_VARIAVEL> <IMAGE_NAME>` - \
+Cria e executa um novo container com a variável de ambiente especificada;
+
 `docker container run -m 512M <IMAGE_NAME>` - Cria e executa um novo container com\
 memória limitada a 512mb;
 
@@ -28,6 +31,13 @@ uso de CPU limitado a meio core;
 
 `docker container update -m <valor> --cpus=<valor> <CONTAINER_ID>` - Atualiza as\
 limitações de uso de memória e CPU de um container;
+
+`docker container run -p <PORTA_HOST>:<PORTA_CONTAINER> <IMAGE_NAME>` - Mapeia \
+uma porta do host a uma porta do container;
+
+`docker container run --mount type=<TIPO>,src=<ORIGEM>,dst=<PONTO_DE_MONTAGEM> <IMAGE_NAME>` -  \
+Cria um container montando em seu diretório ORIGEM um volume docker ou um diretório\
+do host;
 
 `docker container attach <CONTAINER_ID>` - Volta para o terminal (caso exista)\
 de um container em execução;
@@ -43,7 +53,7 @@ não iniciam com o bash;
 existente. -it aloca um terminal interativo, -a te permite ver o STDOUT;
 
 `docker container start|stop $(docker container ls -a -q)` - Inicia ou para todos\
-os containers existentes
+os containers existentes;
 
 `docker container restart <CONTAINER_ID>` - Reinicia um container em execução;
 
@@ -64,9 +74,13 @@ de um container;
 `docker image pull <IMAGE_NAME>:<IMAGE_VERSION>` - Baixa uma imagem do repositório\
 online. Se a versão for omitida, baixa a mais recente;
 
-`docker image build -t <IMAGE_TAG> <PATH_TO_DOCKERFILE>` - Cria uma imagem a partir\
+`docker image build -t <IMAGE_TAG> <PATH_TO_DOCKERFILE_FOLDER>` - Cria uma imagem a partir\
 de uma dockerfile. Tag pode ser omitida, mas facilita a identificação. Uma tag\
 geralmente é composta por `<IMAGE_NAME>`:`<IMAGE_VERSION>`;
+
+`docker image build <PATH_TO_DOCKERFILE_FOLDER> --no-cache` - Cria uma imagem a \
+partir de uma dockerfile sem utilizar arquivos armazenados em cache. Pode ser útil para\
+evitar bugs;
 
 `docker image tag <IMAGE_TAG> <NEW_IMAGE_TAG>` - Adiciona uma nova tag à imagem.\
 Não remove a tag antiga;
